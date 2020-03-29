@@ -19,9 +19,7 @@
 import argparse
 import os
 import time
-
 import cv2
-
 from stereovision.stereo_cameras import StereoPair
 
 
@@ -34,14 +32,13 @@ def main():
     when the computer starts, the USB device runs out of memory. Switching the
     camera to another USB port has also caused this problem in my experience.
     """
-    parser = argparse.ArgumentParser(description="Show video from two "
-                                     "webcams.\n\nPress 'q' to exit.")
-    parser.add_argument("devices", type=int, nargs=2, help="Device numbers "
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--devices", default=[0,0], type=int, nargs=2, help="Device numbers "
                         "for the cameras that should be accessed in order "
                         " (left, right).")
-    parser.add_argument("--output_folder",
+    parser.add_argument("--output_folder", default="chessboard_images",
                         help="Folder to write output images to.")
-    parser.add_argument("--interval", type=float, default=1,
+    parser.add_argument("--interval", type=float, default=10,
                         help="Interval (s) to take pictures in.")
     args = parser.parse_args()
 
